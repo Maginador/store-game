@@ -11,19 +11,15 @@ public class Character : MonoBehaviour
    
    public void Move(Vector3 targetPos)
    {
-      Debug.Log("Move");
-
       if(!(_moveRoutine is null)) StopCoroutine(_moveRoutine);
       _moveRoutine = StartCoroutine(MoveRoutine(targetPos));
    }
 
    private IEnumerator MoveRoutine(Vector3 targetPos)
    {
-      Debug.Log(Vector3.Distance(transform.position,targetPos) );
       var originalPosition = transform.position;
       while (Vector3.Distance(transform.position,targetPos) > Threshold)
       {
-         Debug.Log("MoveRoutine");
          transform.position += (targetPos - originalPosition).normalized*speed;
          yield return null;
 
